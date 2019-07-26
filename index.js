@@ -41,13 +41,14 @@ server.put("/users", (request, response) => {
   response.status(201).json({ url: "/users", operation: "PUT" });
 });
 
-server.delete("/users:id", (request, response) => {
-  const id = request.params.id;
-  db.remove(id)
-    .then(deleted => {
-      response.sendStatus(204).json({ deleted });
-    })
-    .catch(err => response.send(`${err}`));
+server.delete("/users", (request, response) => {
+  //   const id = request.params.id;
+  //   db.remove(id)
+  //     .then(deleted => {
+  //       response.sendStatus(204).json({ deleted });
+  //     })
+  //     .catch(err => response.send(`${err}`));
+  response.sendStatus(204);
 });
 
 server.listen(5000, () => {
