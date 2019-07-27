@@ -11,30 +11,24 @@ router.get("/", (req, res) => {
   res.send("Endpoint working!");
 });
 
-router.post("/users", (request, response) => {
-  response.status(201).json({ url: "/users", operation: "POST" });
-  // db.insert(request.body)
-  //   .then(added => {
-  //     response.status(201).json(added);
-  //   })
-  //   .catch(err => {
-  //     response.status(500).json({ success: false, err });
-  //   });
+router.get("/:id", (request, response) => {
+  const { id } = request.params;
+  db.findById(id).then(res => {
+    response.status(200).json(res);
+  });
 });
 
-router.put("/users", (request, response) => {
+router.post("/", (request, response) => {
+  response.status(201).json({ url: "/users", operation: "POST" });
+});
+
+router.put("/", (request, response) => {
   response.status(201).json({ url: "/users", operation: "PUT" });
 });
 
-router.delete("/users:id", (request, response) => {
-  const id = request.params.id;
-  console.log(request.params); // Should see single object with id key and value
-  //   db.remove(id)
-  //     .then(deleted => {
-  //       response.sendStatus(204).json({ deleted });
-  //     })
-  //     .catch(err => response.send(`${err}`));
-  response.status(200).json({ URL: `/users/${id}` });
+router.delete("/:id", (request, response) => {
+  const { id } = request.params;
+  response.status(204).json({ url: `/users/:${id}`, operation: "delete" });
 });
 
 module.exports = router;

@@ -5,7 +5,7 @@
 const express = require("express");
 const server = express();
 const userRoutes = require("./userRoutes");
-server.use("/users", userRoutes);
+server.use("/api/users", userRoutes);
 
 // const server = http.createServer((req, res) => {
 //   res.statusCode = 200;
