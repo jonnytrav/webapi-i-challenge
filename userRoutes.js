@@ -28,7 +28,11 @@ router.put("/", (request, response) => {
 
 router.delete("/:id", (request, response) => {
   const { id } = request.params;
-  response.status(204).json({ url: `/users/:${id}`, operation: "delete" });
+  db.remove(id)
+    .then(res => response.status204)
+    .catch(err => {
+      console.error(err);
+    });
 });
 
 module.exports = router;
