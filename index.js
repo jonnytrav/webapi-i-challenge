@@ -4,6 +4,7 @@
 // const hostname = "192.168.1.72";
 const express = require("express");
 const server = express();
+server.use(express.json());
 const userRoutes = require("./userRoutes");
 server.use("/api/users", userRoutes);
 
